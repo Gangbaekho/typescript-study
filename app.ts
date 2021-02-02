@@ -12,9 +12,22 @@ function printResult(num: number): void {
   console.log(`Result: ${num}`);
 }
 
-// error가 난다. return type으로 undefined는 불가능 하다
-function printResult2(num: number): undefined {
-  console.log(`Result: ${num}`);
-}
+// Function type이라는게 존재하나보다.
+// 그렇기 떄문에 = 5 는 error가 난다
+// 이렇게 단순하게 제한할 수 도 있찌만
+// 좀 더 복잡하게 Limit을 걸 수 있다는 거다.
+let combineValues: Function;
+combineValues = add;
+combineValues = 5;
+
+// 이렇게 하면은 parameter가 없고
+// return type이 number인 function만
+// 참조할 수 있게 된다는 거임.
+let combineValues2: () => number;
+
+// 비슷한 맥락임.
+// parameter name은 중요하지 않다.
+// parameter 갯수를 나타내는게 더 중요함
+let combineValues3: (a: number, b: number) => number;
 
 printResult(add(5, 12));
