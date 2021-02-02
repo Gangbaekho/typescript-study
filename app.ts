@@ -1,33 +1,18 @@
-// 여기서 알아야 할 것은 Java 처럼
-// return type도 정해줄 수 있다는 것이다.
-// 정해주거나, 알아서 typescript가 판별해 줄 수 있다는 거지.
-// 따로 정해주지 않으면 알아서 하거나, any로 판단 할 수 있다.
+let userInput: unknown;
+let userName: string;
 
-function add(n1: number, n2: number): number {
-  return n1 + n2;
+userInput = 5;
+userInput = "Jinsoo";
+// 마지막에 userInput 이 String임에도 불구하고
+// Error가 난다.
+// unknown은 any랑 비슷하게 아무 type을 넣을 수는 있는데
+// 좀 더 쓰려면 귀찮다는거다.
+// 왠만하면 type 잘 맞춰서 쓰고 , 혹시라도 any를 해야 한다하더라도
+// unknown을 이용해서 더 귀찮지만 안전하게 사용해야 한다는 말임.
+userName = userIput;
+
+// 이렇게 if문을 해서 type check 한다음에
+// 넣을 수는 있음.
+if (typeof userInput === "string") {
+  userName = userInput;
 }
-
-// return 을 안하면 Java 처럼 void가 return type이 된다.
-function printResult(num: number): void {
-  console.log(`Result: ${num}`);
-}
-
-// Function type이라는게 존재하나보다.
-// 그렇기 떄문에 = 5 는 error가 난다
-// 이렇게 단순하게 제한할 수 도 있찌만
-// 좀 더 복잡하게 Limit을 걸 수 있다는 거다.
-let combineValues: Function;
-combineValues = add;
-combineValues = 5;
-
-// 이렇게 하면은 parameter가 없고
-// return type이 number인 function만
-// 참조할 수 있게 된다는 거임.
-let combineValues2: () => number;
-
-// 비슷한 맥락임.
-// parameter name은 중요하지 않다.
-// parameter 갯수를 나타내는게 더 중요함
-let combineValues3: (a: number, b: number) => number;
-
-printResult(add(5, 12));
