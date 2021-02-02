@@ -1,33 +1,22 @@
-// Tuple은 length, type이 정해져있는
-// 특수한 Array라고 생각하면 됨
-// 아래의 role 같은 경우는 반드시 저 포맷으로
-// 이루어져야 한다는 것임.
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string];
-// } = {
-//   name: "jinsoo",
-//   age: 29,
-//   hobbies: ["Sports", "Cooking"],
-//   role: [2, "author"],
-// };
-
-enum Role {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
+// combine은 뭐 예시지만, 숫자나 string 둘 다 받을 수 있고
+// 그에 따라 다른 로직을 처리한다고 가정하자.
+// method로서는 좀 구리긴한데 예제니까.
+// argument도 number 또는 string이 들어갈 수 있는 구조지만
+// 그냥 number | string 이라는 Union type이라고 받아들여야 한다.
+function combine(input1: number | string, input2: number | string) {
+  let result;
+  // 필연적으로 타입 검사해서, 분기 칠 수 밖에 없는 구조이긴 함.
+  // 근데 method안에서 이렇게 분기치는거 별로인데
+  // 걍 애초에 이런 method를 만들지마라.
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
 
-const person = {
-  name: "jinsoo",
-  age: 29,
-  hobbies: ["Sports", "Cooking"],
-  // role의 string 값에 따라 뭔가 분기를 칠건데
-  // 이건 상당히 위험하다는 거지.
-  // Java 같은 경우 이럴 때, ENUM을 이용하는데
-  // Typescript는 ENUM을 추가했다는거다.
-  // role: "READ ONLY USER",
-  role: Role.READ_ONLY,
-};
+const combinedAges = combine(30, 40);
+console.log(combinedAges);
+
+const combineNames = combine("Max", "Anna");
