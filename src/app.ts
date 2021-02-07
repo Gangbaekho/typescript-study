@@ -3,7 +3,7 @@ class Department {
   // private name: string;
   // private employees: string[] = [];
 
-  constructor(private readonly id: string, private name: string, private employees: string[]) {
+  constructor(private readonly id: string, private name: string, protected employees: string[]) {
     // this.id = id;
     // this.name = name;
     // this.employees = employees;
@@ -35,7 +35,16 @@ class ITDepartment extends Department {
   showAdmins() {
     console.log(this.admins)
   }
+
+  addEmployee(employee: string) {
+    console.log(employee)
+    this.employees.push(employee)
+  }
+
 }
+
+const test = new ITDepartment('t1', 'samsung', [], []);
+test.addEmployee('jinsoo')
 
 
 
