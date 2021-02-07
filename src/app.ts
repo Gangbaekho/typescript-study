@@ -1,9 +1,12 @@
 class Department {
-  name: string;
-  private employees: string[] = [];
+  // private id: string;
+  // private name: string;
+  // private employees: string[] = [];
 
-  constructor(name: string) {
-    this.name = name;
+  constructor(private id: string, private name: string, private employees: string[]) {
+    // this.id = id;
+    // this.name = name;
+    // this.employees = employees;
   }
 
   describe(this: Department) {
@@ -20,7 +23,7 @@ class Department {
   }
 }
 
-const accounting = new Department("Accounting");
+const accounting = new Department("id", "name", []);
 
 accounting.addEmployee('Max')
 accounting.addEmployee('Manu')
