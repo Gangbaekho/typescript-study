@@ -40,12 +40,13 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
+  private static instance: AccountingDepartment;
   static fiscalYear = 2021;
 
   private lastReport: string;
   private reports: string[];
 
-  constructor(
+  private constructor(
     id: string,
     name: string,
     employees: string[],
@@ -57,6 +58,20 @@ class AccountingDepartment extends Department {
     console.log(
       `FiscalYear : ${AccountingDepartment.fiscalYear} , in constructor for test`
     );
+  }
+
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return AccountingDepartment.instance;
+    }
+    AccountingDepartment.instance = new AccountingDepartment(
+      "a1",
+      "accountDepartment",
+      [],
+      ["recentReport"]
+    );
+
+    return AccountingDepartment.instance;
   }
 
   addReport(text: string) {
@@ -87,18 +102,5 @@ class AccountingDepartment extends Department {
   }
 }
 
-const testEmployee = AccountingDepartment.createEmployee("jinsoo");
-console.log(testEmployee);
-
-console.log(`This year is ${AccountingDepartment.fiscalYear}`);
-
-const test = new AccountingDepartment(
-  "a1",
-  "accountDepartment",
-  [],
-  ["recentReport"]
-);
-
-console.log(test.mostRecentReport);
-test.mostRecentReport = "test";
-console.log(test.mostRecentReport);
+const accountingInstance = AccountingDepartment.getInstance();
+console.log(accountingInstance);
