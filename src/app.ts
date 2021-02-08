@@ -46,6 +46,8 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
+  static fiscalYear = 2021;
+
   private lastReport: string;
   private reports: string[];
 
@@ -58,6 +60,9 @@ class AccountingDepartment extends Department {
     super(id, name, employees);
     this.lastReport = reports[0];
     this.reports = reports;
+    console.log(
+      `FiscalYear : ${AccountingDepartment.fiscalYear} , in constructor for test`
+    );
   }
 
   addReport(text: string) {
@@ -78,7 +83,16 @@ class AccountingDepartment extends Department {
     }
     this.addReport(value);
   }
+
+  static createEmployee(name: string) {
+    return { name: name };
+  }
 }
+
+const testEmployee = AccountingDepartment.createEmployee("jinsoo");
+console.log(testEmployee);
+
+console.log(`This year is ${AccountingDepartment.fiscalYear}`);
 
 const test = new AccountingDepartment(
   "a1",
