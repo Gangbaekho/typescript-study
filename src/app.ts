@@ -1,25 +1,10 @@
-interface Named {
-  readonly name: string;
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+  (a: number, b: number): number;
 }
 
-interface Greetable extends Named {
-  greet(phrase: string): void;
-}
+let add: AddFn;
 
-class Person implements Greetable {
-  name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-
-  greet(phrase: string) {
-    console.log(`${phrase} ${this.name}`);
-  }
-}
-
-let user1: Greetable;
-
-user1 = new Person("jinsoo");
-
-user1.greet("Hi there - i am");
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
