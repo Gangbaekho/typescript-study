@@ -1,27 +1,22 @@
-// type AddFn = (a: number, b: number) => number;
-// interface AddFn {
-//   (a: number, b: number): number;
-// }
-
-// let add: AddFn;
-
-// add = (n1: number, n2: number) => {
-//   return n1 + n2;
-// };
-
-interface Named {
-  readonly name: string;
-  outputName?: string;
+interface Admin {
+  name: string;
+  privileges: string[];
 }
 
-class Person implements Named {
-  readonly name: string;
-  outputName?: string;
-
-  constructor(name: string, outputName?: string) {
-    this.name = name;
-    if (outputName) {
-      this.outputName = outputName;
-    }
-  }
+interface Employee {
+  name: string;
+  startDate: Date;
 }
+
+interface ElevatedEmplyee extends Admin, Employee {}
+
+const e1: ElevatedEmplyee = {
+  name: "max",
+  privileges: ["create-server"],
+  startDate: new Date(),
+};
+
+type TestTypeOne = string | number;
+type TestTypeTwo = number | boolean;
+
+type TestTypeThree = TestTypeOne | TestTypeTwo;
