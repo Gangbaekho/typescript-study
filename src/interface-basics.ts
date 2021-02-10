@@ -6,20 +6,20 @@ interface Greetable extends Named {
   greet(phrase: string): void;
 }
 
-class Person implements Greetable {
-  name: string;
+// class Person implements Greetable {
+//   name: string;
 
-  constructor(name: string) {
-    this.name = name;
-  }
+//   constructor(name: string) {
+//     this.name = name;
+//   }
 
-  greet(phrase: string) {
-    console.log(`${phrase} ${this.name}`);
-  }
-}
+//   greet(phrase: string) {
+//     console.log(`${phrase} ${this.name}`);
+//   }
+// }
 
-let user1: Greetable;
+// let user1: Greetable;
 
-user1 = new Person("jinsoo");
+// user1 = new Person("jinsoo");
 
-user1.greet("Hi there - i am");
+// user1.greet("Hi there - i am");
