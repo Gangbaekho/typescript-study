@@ -1,28 +1,21 @@
-const namesOne: Array<string> = [];
+class DataStorage<T> {
+  private data: T[] = [];
 
-// const promise = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve("This is done!");
-//   }, 2000);
-// });
+  addItem(item: T) {
+    this.data.push(item);
+  }
 
-// const promise: Promise<number> = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve("This is done");
-//   }, 2000);
-// });
+  removeItem(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
 
-// promise
-//   .then((data) => {
-//     console.log(data.split(" "));
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-
-function merge<T extends object, U extends object>(objA: T, objB: U) {
-  return Object.assign(objA, objB);
+  getItmes() {
+    return [...this.data];
+  }
 }
 
-const mergedObj = merge({ name: "max" }, { age: 10 });
-console.log(mergedObj.name);
+const textStorage = new DataStorage<string>();
+textStorage.addItem("Max");
+textStorage.addItem("Manu");
+textStorage.removeItem("Max");
+console.log(textStorage.getItmes());
