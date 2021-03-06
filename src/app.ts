@@ -1,21 +1,17 @@
-class DataStorage<T extends string | number | boolean> {
-  private data: T[] = [];
+function Logger(logString: string) {
+  return function (constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  };
+}
 
-  addItem(item: T) {
-    this.data.push(item);
-  }
+@Logger("Hello this is test log message!")
+class DummyPerson {
+  name = "Max";
 
-  removeItem(item: T) {
-    this.data.splice(this.data.indexOf(item), 1);
-  }
-
-  getItmes() {
-    return [...this.data];
+  constructor() {
+    console.log("Creating person object");
   }
 }
 
-const textStorage = new DataStorage<string>();
-textStorage.addItem("Max");
-textStorage.addItem("Manu");
-textStorage.removeItem("Max");
-console.log(textStorage.getItmes());
+const pers = new DummyPerson();
