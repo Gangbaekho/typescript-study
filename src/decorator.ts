@@ -10,7 +10,7 @@ function WithTemplate(template: string, hookId: string) {
     originalConstructor: T
   ) {
     return class extends originalConstructor {
-      constructor(...args: any[]) {
+      constructor(..._: any[]) {
         super();
         console.log("Rendering template");
         const hookEl = document.getElementById(hookId);
